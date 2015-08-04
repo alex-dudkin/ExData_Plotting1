@@ -2,22 +2,27 @@
 #memory_required = 2075259 * 9 * 8/1024/1024 #Megabytes
 
 f1 <- file("household_power_consumption.txt", open = "rt")
-f1_read <- TRUE
-skip1 <- -1
-while (f1_read) {
-        ln <- readLines(f1, n=1)
-        f1_read <- !grepl("^1\\/2\\/2007|^2\\/2\\/2007", ln)
+ptrn <- "^1\\/2\\/2007|^2\\/2\\/2007"
+
+skip1 <- 0
+skip2 <- 0
+
+while (length(ln <- readLines(f1, n=1)) > 0) {
+        if (grepl(ptrn, ln)) {
+                skip2 <- 1
+                break
+        }
         skip1 <- skip1+1
 }
 
-f1_read <- TRUE
-skip2 <- 0
-while (f1_read) {
-        ln <- readLines(f1, n=1)
-        f1_read <- grepl("^1\\/2\\/2007|^2\\/2\\/2007", ln)
+while (length(ln <- readLines(f1, n=1)) > 0) {
+        if (!grepl(ptrn, ln)) {
+                break
+        }
         skip2 <- skip2+1
 }
 close(f1)
+
 
 t1 <- read.csv("household_power_consumption.txt", header = FALSE, sep = ";", skip = skip1, nrows = skip2, na.strings = "?")
 h1 <- read.csv("household_power_consumption.txt", header = TRUE, sep = ";", nrows = 1)
