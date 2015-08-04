@@ -25,7 +25,7 @@ colnames(t1) <- colnames(h1)
 t1$DateTime <- strptime(paste(t1$Date, t1$Time, sep=" "), format = "%d/%m/%Y %H:%M:%S")
 
 png("plot3.png")
-plot(t1$DateTime, t1$Sub_metering_1 , type = "l", xlab="", ylab = "Energy sub metering", col="black")
+plot(t1$DateTime, t1$Sub_metering_1 , type = "l", xlab="", ylab = "Energy sub metering", col=1)
 lines(t1$DateTime, t1$Sub_metering_2, col=2)
 lines(t1$DateTime, t1$Sub_metering_3, col=4)
 legend("topright", legend = paste0("Sub_metering_", 1:3), col=c(1,2,4), lwd = 1)
