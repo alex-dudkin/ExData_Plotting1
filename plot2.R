@@ -29,6 +29,6 @@ colnames(t1) <- colnames(h1)
 t1$DateTime <- strptime(paste(t1$Date, t1$Time, sep=" "), format = "%d/%m/%Y %H:%M:%S")
 
 png("plot2.png")
-plot(t1$DateTime, t1$Global_active_power, type = "l", xlab = "", ylab="")
+plot(t1$DateTime, t1$Global_active_power, type = "l", xlab = "", ylab="Global Active Power (kilowatts)")
 dev.off()
 
