@@ -1,5 +1,6 @@
 #memory required = no. of column * no. of rows * 8 bytes/numeric
 #memory_required = 2075259 * 9 * 8/1024/1024 #Megabytes
+Sys.setlocale("LC_TIME","en_US.UTF-8")
 
 f1 <- file("household_power_consumption.txt", open = "rt")
 ptrn <- "^1\\/2\\/2007|^2\\/2\\/2007"
